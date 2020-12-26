@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_logo_bp_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WarrantTrackingSystem">
-        <activity android:name=".ui.activity.AuthActivity"></activity>
+        <activity android:name=".ui.activity.MainDashboardActivity"></activity>
+        <activity android:name=".ui.activity.AuthActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

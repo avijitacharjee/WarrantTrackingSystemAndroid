@@ -1,5 +1,6 @@
 package com.avijit.warranttrackingsystem
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,5 +18,11 @@ class MainActivity : AppCompatActivity() {
         Handler(Looper.myLooper()!!).postDelayed({
             startActivity(Intent(this,AuthActivity::class.java))
         },2000)
+        val scaleX : ObjectAnimator = ObjectAnimator.ofFloat(binding.image,"scaleX",0f,1f)
+        val scaleY : ObjectAnimator = ObjectAnimator.ofFloat(binding.image,"scaleY",0f,1f)
+        scaleX.duration = 500
+        scaleY.duration = 500
+        scaleX.start()
+        scaleY.start()
     }
 }
