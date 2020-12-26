@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+Constants.kt
+app/src/main/java/com/avijit/warranttrackingsystem/utils/Constants.kt
