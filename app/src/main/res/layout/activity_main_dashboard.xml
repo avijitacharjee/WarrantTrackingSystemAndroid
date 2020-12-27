@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_1"
+    android:id="@+id/drawer_layout"
+    tools:openDrawer="end"
     tools:context=".ui.activity.MainDashboardActivity">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:background="@color/black_1"
+                app:titleTextColor="@color/black_1"
+                android:backgroundTint="@color/white_1"
+                android:layout_height="?attr/actionBarSize"
+                android:id="@+id/toolbar"
+                />
+            <FrameLayout
+                android:id="@+id/main_dashboard_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:background="@color/white_1"
+        android:layout_width="wrap_content"
+        app:headerLayout="@layout/navigation_header_main_dashboard"
+        android:fitsSystemWindows="true"
+        android:visibility="visible"
+        android:layout_gravity="end"
+        app:itemIconTint="@color/black_1"
+        app:itemTextColor="@color/black_1"
+        app:menu="@menu/menu_main_dashboard"
+        android:layout_height="match_parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

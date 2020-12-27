@@ -17,11 +17,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         Handler(Looper.myLooper()!!).postDelayed({
             startActivity(Intent(this,AuthActivity::class.java))
-        },2000)
+        },1800)
         val scaleX : ObjectAnimator = ObjectAnimator.ofFloat(binding.image,"scaleX",0f,1f)
         val scaleY : ObjectAnimator = ObjectAnimator.ofFloat(binding.image,"scaleY",0f,1f)
-        scaleX.duration = 500
-        scaleY.duration = 500
+        scaleX.duration = 1000
+        scaleY.duration = 1000
         scaleX.start()
         scaleY.start()
     }

@@ -12,5 +12,6 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
         supportFragmentManager.beginTransaction().replace(R.id.auth_container,LoginFragment()).commit()
+
     }
 }

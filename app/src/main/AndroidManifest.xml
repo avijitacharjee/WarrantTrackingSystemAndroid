@@ -11,9 +11,15 @@
         android:roundIcon="@mipmap/ic_logo_bp_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WarrantTrackingSystem">
-        <activity android:name=".ui.activity.MainDashboardActivity"></activity>
-        <activity android:name=".ui.activity.AuthActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activity.MainDashboardActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"
+            />
+        <activity android:name=".ui.activity.AuthActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"
+            />
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
