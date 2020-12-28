@@ -9,4 +9,6 @@ data class Token (
     var expires_in: Int,
     var access_token : String,
     var refresh_token : String
-)
+) {
+    constructor() : this("",0,"","")
+}

@@ -1,6 +1,7 @@
 package com.avijit.warranttrackingsystem.api
 
 import com.avijit.warranttrackingsystem.models.Token
+import com.avijit.warranttrackingsystem.models.TokenBody
 import retrofit2.Call
 import retrofit2.http.POST
 
@@ -10,5 +11,5 @@ import retrofit2.http.POST
  */
 interface TokenApi {
     @POST
-    suspend fun token() : Call<Token>
+    fun token(tokenBody: TokenBody) : Call<Token>
 }
