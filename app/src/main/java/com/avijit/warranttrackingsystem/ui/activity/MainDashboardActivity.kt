@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import com.avijit.warranttrackingsystem.R
 import com.avijit.warranttrackingsystem.databinding.ActivityMainDashboardBinding
+import com.avijit.warranttrackingsystem.ui.fragments.AllPendingWarrantsFragment
 import com.avijit.warranttrackingsystem.utils.EndDrawerToggle
 
 class MainDashboardActivity : AppCompatActivity() {
@@ -30,6 +32,7 @@ class MainDashboardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         binding.toolbar.navigationIcon?.setTint(Color.BLACK)
+        supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_container, AllPendingWarrantsFragment()).commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

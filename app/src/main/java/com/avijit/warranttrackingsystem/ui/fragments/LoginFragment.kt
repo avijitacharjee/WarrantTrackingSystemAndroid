@@ -1,5 +1,6 @@
 package com.avijit.warranttrackingsystem.ui.fragments
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,8 +18,8 @@ import com.avijit.warranttrackingsystem.R
 import com.avijit.warranttrackingsystem.databinding.FragmentLoginBinding
 import com.avijit.warranttrackingsystem.ui.activity.MainDashboardActivity
 import com.avijit.warranttrackingsystem.utils.AppUtils
+import com.avijit.warranttrackingsystem.utils.Constants
 import com.avijit.warranttrackingsystem.viewmodel.LoginViewModel
-import java.util.*
 
 
 /**
@@ -52,6 +53,7 @@ class LoginFragment : Fragment() {
                     Method.POST,
                     url,
                     Response.Listener { response ->
+                        activity?.getSharedPreferences(Constants.SHARED_PREFERENCES,MODE_PRIVATE)?.edit()?.putString("tokenBody",response)?.apply()
                         appUtils.dialog?.dismiss()
                         startActivity(Intent(context,MainDashboardActivity::class.java))
                     },
