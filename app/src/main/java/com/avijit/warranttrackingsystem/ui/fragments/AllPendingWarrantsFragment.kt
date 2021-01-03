@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -21,6 +22,7 @@ import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
 
+
 /**
  * Created by Avijit Acharjee on 12/27/2020 at 1:11 PM.
  * Email: avijitach@gmail.com.
@@ -31,6 +33,7 @@ class AllPendingWarrantsFragment : Fragment() {
     private val warrantList : ArrayList<SiWarrant> = ArrayList()
     private lateinit var appUtils: AppUtils
     private lateinit var adapter: AllPendingWarrantAdapter
+    private lateinit var llm : LinearLayoutManager
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,8 +46,11 @@ class AllPendingWarrantsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appUtils = AppUtils(context)
+        llm = LinearLayoutManager(context)
+        llm.orientation = LinearLayoutManager.VERTICAL
+        binding.allWarrantRecyclerView.layoutManager = llm
         adapter = AllPendingWarrantAdapter(warrantList)
-        binding.allWarrantRecyclerView.adapter = adapter
+        binding.allWarrantRecyclerView.adapter =adapter
         loadData()
     }
     private fun loadData(){
@@ -69,12 +75,14 @@ class AllPendingWarrantsFragment : Fragment() {
                         val jsonResponse : JSONObject = JSONObject(response)
                         val data : JSONArray = jsonResponse.getJSONArray("data")
                         warrantList.clear()
-                        for(i in 0..data.length()-1){
+                        for(i in 0 until data.length()){
                             val siWarrant : SiWarrant = Gson().fromJson(data.getString(i),SiWarrant::class.java)
                             Log.d(TAG, "loadData: "+ Gson().toJson(siWarrant))
                             warrantList.add(siWarrant)
                         }
                         adapter.notifyDataSetChanged()
+                        adapter = AllPendingWarrantAdapter(warrantList)
+                        binding.allWarrantRecyclerView.adapter =adapter
                     }catch (e : Exception){
                         Toast.makeText(context,e.toString(),Toast.LENGTH_LONG).show()
                     }
