@@ -34,6 +34,7 @@ class AllPendingWarrantsFragment : Fragment() {
     private lateinit var appUtils: AppUtils
     private lateinit var adapter: AllPendingWarrantAdapter
     private lateinit var llm : LinearLayoutManager
+    private lateinit var ctx: Context
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -81,8 +82,6 @@ class AllPendingWarrantsFragment : Fragment() {
                             warrantList.add(siWarrant)
                         }
                         adapter.notifyDataSetChanged()
-                        adapter = AllPendingWarrantAdapter(warrantList)
-                        binding.allWarrantRecyclerView.adapter =adapter
                     }catch (e : Exception){
                         Toast.makeText(context,e.toString(),Toast.LENGTH_LONG).show()
                     }
