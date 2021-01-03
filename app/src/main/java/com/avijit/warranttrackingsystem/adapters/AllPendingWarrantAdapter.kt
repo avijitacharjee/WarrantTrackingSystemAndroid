@@ -1,19 +1,23 @@
 package com.avijit.warranttrackingsystem.adapters
 
+import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.avijit.warranttrackingsystem.R
 import com.avijit.warranttrackingsystem.databinding.FragmentDialogExecutionBinding
+import com.avijit.warranttrackingsystem.databinding.FragmentDialogNonExecutionBinding
 import com.avijit.warranttrackingsystem.databinding.ItemAllWarrantPendingBinding
 import com.avijit.warranttrackingsystem.models.SiWarrant
 import kotlinx.android.synthetic.main.fragment_dialog_execution.*
@@ -60,6 +64,13 @@ class AllPendingWarrantAdapter(var warrantList: ArrayList<SiWarrant>) : Recycler
                     dialogFragment.show(ft,"execution")
                     dialogFragment.isCancelable=false
                 }
+                else if (it.title == "Non-execution"){
+                    val dialogFragment : DialogFragment = NonExecutionDialogFragment(warrantList[position])
+                    val ft : FragmentTransaction = (holder.binding.root.context as FragmentActivity).supportFragmentManager.beginTransaction()
+                    dialogFragment.show(ft,"execution")
+                    dialogFragment.isCancelable=false
+                }
+
                 true
             }
         }
@@ -143,14 +154,39 @@ class AllPendingWarrantAdapter(var warrantList: ArrayList<SiWarrant>) : Recycler
             }
         }
     }
-    class NonExecutionDialogFragment : DialogFragment() {
-
+    class NonExecutionDialogFragment(siWarrant: SiWarrant) : DialogFragment() {
+        private lateinit var binding : FragmentDialogNonExecutionBinding
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View? {
+            binding = FragmentDialogNonExecutionBinding.inflate(inflater,container,false)
+            /*dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))*/
 
+            return binding.root
+        }
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setStyle(STYLE_NO_TITLE, R.style.DialogStyle);
+        }
+
+        override fun onStart() {
+            super.onStart()
+            //dialog?.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            setStyle(DialogFragment.STYLE_NO_TITLE,
+                android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth);
+            binding.saveButton.setOnClickListener {
+
+            }
+            binding.cancelButton.setOnClickListener {
+                dialog?.dismiss()
+            }
         }
     }
 }
