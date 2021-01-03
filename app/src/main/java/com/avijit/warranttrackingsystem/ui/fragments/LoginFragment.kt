@@ -42,6 +42,10 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        if(activity?.getSharedPreferences(Constants.SHARED_PREFERENCES, MODE_PRIVATE)?.getString("tokenBody","")!=""){
+            startActivity(Intent(context,MainDashboardActivity::class.java))
+            return
+        }
         binding.loginLayout.animation = AnimationUtils.loadAnimation(context, R.anim.top_animation)
         appUtils = AppUtils(context)
         binding.loginButton.setOnClickListener{
@@ -70,9 +74,9 @@ class LoginFragment : Fragment() {
                     override fun getParams(): Map<String, String> {
                         val params: MutableMap<String, String> =
                             HashMap()
-                        params["client_id"] = "2"
-                        params["client_secret"] = "ms7tOMGnTNvZePaoNLjxzjv8RKyictYTMaDEL5xp"
-                        params["grant_type"] = "password"
+                        params["client_id"] = Constants.CLIENT_ID
+                        params["client_secret"] = Constants.CLIENT_SECRET
+                        params["grant_type"] = Constants.GRANT_TYPE
                         params["username"] = binding.userNameEditText.text.toString()
                         params["password"] = binding.passwordEditText.text.toString()
 

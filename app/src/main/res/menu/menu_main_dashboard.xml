@@ -6,18 +6,18 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/home"
-            android:icon="@mipmap/ic_logo_bp"
+            android:icon="@drawable/ic_baseline_more_horiz_24"
             android:iconTint="@color/black_1"
             android:title="abcd" />
         <item
             android:id="@+id/nav_all_warrants"
-            android:icon="@mipmap/ic_logo_bp"
+            android:icon="@drawable/ellipsis"
             android:iconTint="@color/black_1"
             android:title="All warrants" />
         <item
             android:id="@+id/adff"
             android:icon="@mipmap/ic_logo_bp"
             android:iconTint="@color/black_1"
-            android:title="abcd" />
+            android:title="logout" />
     </group>
 </menu>

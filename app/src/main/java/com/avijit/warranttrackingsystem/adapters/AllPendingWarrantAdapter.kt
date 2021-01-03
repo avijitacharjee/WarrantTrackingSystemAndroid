@@ -6,13 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.avijit.warranttrackingsystem.databinding.ItemAllWarrantPendingBinding
+import com.avijit.warranttrackingsystem.models.SiWarrant
 
 /**
  * Created by Avijit Acharjee on 12/30/2020 at 12:41 AM.
  * Email: avijitach@gmail.com.
  */
 
-class AllPendingWarrantAdapter : RecyclerView.Adapter<AllPendingWarrantAdapter.ViewHolder>() {
+class AllPendingWarrantAdapter(var warrantList : ArrayList<SiWarrant>) : RecyclerView.Adapter<AllPendingWarrantAdapter.ViewHolder>() {
+
     class ViewHolder(itemBinding: ItemAllWarrantPendingBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         val binding : ItemAllWarrantPendingBinding = itemBinding
     }
@@ -22,7 +24,7 @@ class AllPendingWarrantAdapter : RecyclerView.Adapter<AllPendingWarrantAdapter.V
     }
 
     override fun getItemCount(): Int {
-        return 0
+        return warrantList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

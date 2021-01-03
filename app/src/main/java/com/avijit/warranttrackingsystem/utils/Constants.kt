@@ -8,5 +8,9 @@ class Constants {
     companion object {
         const val APP_NAME = "Warrant Tracking System"
         const val SHARED_PREFERENCES = "Warrant Tracking System"
+        const val CLIENT_ID = "2"
+        const val CLIENT_SECRET = "ms7tOMGnTNvZePaoNLjxzjv8RKyictYTMaDEL5xp"
+        const val GRANT_TYPE = "password"
+
     }
 }

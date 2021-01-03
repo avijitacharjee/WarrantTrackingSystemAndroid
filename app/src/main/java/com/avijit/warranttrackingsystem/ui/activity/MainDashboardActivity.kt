@@ -1,12 +1,10 @@
 package com.avijit.warranttrackingsystem.ui.activity
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.avijit.warranttrackingsystem.R
 import com.avijit.warranttrackingsystem.databinding.ActivityMainDashboardBinding
 import com.avijit.warranttrackingsystem.ui.fragments.AllPendingWarrantsFragment
@@ -33,10 +31,19 @@ class MainDashboardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         binding.toolbar.navigationIcon?.setTint(Color.BLACK)
         supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_container, AllPendingWarrantsFragment()).commit()
+        setupNavigation()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Toast.makeText(baseContext,"Back button",Toast.LENGTH_SHORT).show()
         return true
+    }
+
+    fun setupNavigation(){
+        binding.navView.setNavigationItemSelectedListener {
+            var id : Int = it.itemId
+            
+            true
+        }
     }
 }
