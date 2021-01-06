@@ -5,15 +5,15 @@
     tools:showIn="@layout/activity_main_dashboard">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/home"
+            android:id="@+id/nav_all_warrants"
             android:icon="@drawable/ic_baseline_more_horiz_24"
             android:iconTint="@color/black_1"
-            android:title="abcd" />
+            android:title="All Un-executed" />
         <item
-            android:id="@+id/nav_all_warrants"
+            android:id="@+id/nav_all_executed"
             android:icon="@drawable/ellipsis"
             android:iconTint="@color/black_1"
-            android:title="All warrants" />
+            android:title="All executed" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@mipmap/ic_logo_bp"
