@@ -6,17 +6,17 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_all_warrants"
-            android:icon="@drawable/ic_baseline_more_horiz_24"
+            android:icon="@drawable/ic_baseline_pending_actions_24"
             android:iconTint="@color/black_1"
             android:title="All Un-executed" />
-        <item
+        <!--<item
             android:id="@+id/nav_all_executed"
-            android:icon="@drawable/ellipsis"
+            android:icon="@drawable/ic_baseline_pending_actions_24"
             android:iconTint="@color/black_1"
-            android:title="All executed" />
+            android:title="All executed" />-->
         <item
             android:id="@+id/nav_logout"
-            android:icon="@mipmap/ic_logo_bp"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
             android:iconTint="@color/black_1"
             android:title="logout" />
     </group>

@@ -1,11 +1,13 @@
 package com.avijit.warranttrackingsystem.ui.activity
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.avijit.warranttrackingsystem.R
@@ -31,8 +33,8 @@ class MainDashboardActivity : AppCompatActivity() {
         endDrawerToggle.syncState()
         //binding.toolbar.setTitle(R.string.app_name)
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        /*supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)*/
         binding.toolbar.navigationIcon?.setTint(Color.BLACK)
         supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_container, AllPendingWarrantsFragment()).commit()
         setupNavigation()
@@ -52,5 +54,19 @@ class MainDashboardActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setMessage("Are you sure you want to exit.")
+            .setPositiveButton("Ok", DialogInterface.OnClickListener { dialogInterface, i ->
+                finishAffinity()
+            })
+            .setNegativeButton("Cancel", DialogInterface.OnClickListener { dialogInterface, i ->
+
+            })
+            .create()
+            .show()
+
     }
 }

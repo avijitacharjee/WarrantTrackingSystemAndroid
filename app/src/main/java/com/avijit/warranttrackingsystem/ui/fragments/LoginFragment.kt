@@ -42,6 +42,10 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        appUtils = AppUtils(context)
+        if(System.currentTimeMillis()- (appUtils.sf?.getLong("time",0) ?: 0) >=86400000L){
+            appUtils.sf?.edit()?.clear()
+        }
         if(activity?.getSharedPreferences(Constants.SHARED_PREFERENCES, MODE_PRIVATE)?.getString("tokenBody","")!=""){
             startActivity(Intent(context,MainDashboardActivity::class.java))
             return
@@ -57,7 +61,8 @@ class LoginFragment : Fragment() {
                     Method.POST,
                     url,
                     Response.Listener { response ->
-                        activity?.getSharedPreferences(Constants.SHARED_PREFERENCES,MODE_PRIVATE)?.edit()?.putString("tokenBody",response)?.apply()
+                        appUtils.sf?.edit()?.putString("tokenBody",response)?.apply()
+                        appUtils.sf?.edit()?.putLong("time",System.currentTimeMillis())?.apply()
                         appUtils.dialog?.dismiss()
                         startActivity(Intent(context,MainDashboardActivity::class.java))
                     },
@@ -79,7 +84,6 @@ class LoginFragment : Fragment() {
                         params["grant_type"] = Constants.GRANT_TYPE
                         params["username"] = binding.userNameEditText.text.toString()
                         params["password"] = binding.passwordEditText.text.toString()
-
                         return params
                     }
                 }
@@ -99,4 +103,5 @@ class LoginFragment : Fragment() {
 
 
     }
+
 }

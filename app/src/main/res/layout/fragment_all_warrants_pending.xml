@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:background="@color/white_1"
+        android:nestedScrollingEnabled="true"
+        app:layout_constraintTop_toTopOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

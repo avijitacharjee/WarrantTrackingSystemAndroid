@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/all_warrant_recycler_view"
+        android:id="@+id/executed_recycler_view"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:background="@color/white_1"

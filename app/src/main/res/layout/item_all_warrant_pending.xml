@@ -5,6 +5,7 @@
     android:background="@color/white_1"
     android:padding="10dp"
     android:elevation="5dp"
+    android:clickable="true"
     android:outlineProvider="bounds"
     android:layout_margin="5dp"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,6 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="@dimen/table_padding"
         android:textColor="@color/black_1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +26,7 @@
     <TextView
         android:id="@+id/address"
         android:textSize="15sp"
+        android:padding="@dimen/table_padding"
         android:textColor="@color/black_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,10 +39,105 @@
         android:layout_width="wrap_content"
         android:tint="@color/black_1"
         android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/details_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        android:paddingBottom="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/address"
+        >
+        <TextView
+            android:id="@+id/process_label"
+            android:text="Process number"
+            android:layout_width="0dp"
+            android:textColor="@color/black_1"
+            android:padding="@dimen/table_padding"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/process_number_text_view"
+            />
+        <TextView
+            android:id="@+id/process_number_text_view"
+            tools:text="@tools:sample/us_phones"
+            android:textColor="@color/black_1"
+            android:layout_width="0dp"
+            android:padding="@dimen/table_padding"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/process_label"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/gr_label"
+            android:text="GR Number"
+            android:layout_width="0dp"
+            android:textColor="@color/black_1"
+            android:padding="@dimen/table_padding"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/process_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/gr_number_text_view"
+            />
+        <TextView
+            android:id="@+id/gr_number_text_view"
+            tools:text="@tools:sample/us_zipcodes"
+            android:layout_width="0dp"
+            android:textColor="@color/black_1"
+            android:padding="@dimen/table_padding"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/process_number_text_view"
+            app:layout_constraintStart_toEndOf="@id/gr_label"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/type_label"
+            android:text="Warrant type"
+            android:layout_width="0dp"
+            android:textColor="@color/black_1"
+            android:padding="@dimen/table_padding"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/gr_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/type_text_view"
+            />
+        <TextView
+            android:id="@+id/type_text_view"
+            tools:text="@tools:sample/us_zipcodes"
+            android:layout_width="0dp"
+            android:textColor="@color/black_1"
+            android:padding="@dimen/table_padding"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/gr_number_text_view"
+            app:layout_constraintStart_toEndOf="@id/type_label"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/father_label"
+            android:text="Father name"
+            android:textColor="@color/black_1"
+            android:layout_width="0dp"
+            android:padding="@dimen/table_padding"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/type_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/type_text_view"
+            />
+        <TextView
+            android:id="@+id/father_text_view"
+            tools:text="@tools:sample/full_names"
+            android:layout_width="0dp"
+            android:textColor="@color/black_1"
+            android:padding="@dimen/table_padding"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/type_text_view"
+            app:layout_constraintStart_toEndOf="@id/type_label"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

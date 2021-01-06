@@ -2,6 +2,7 @@ package com.avijit.warranttrackingsystem.utils
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.view.Gravity
 import android.view.ViewGroup
@@ -17,8 +18,10 @@ import android.widget.TextView
  */
 public class AppUtils(private var context: Context?) {
     var dialog: AlertDialog ?= null
+    var sf : SharedPreferences?=null
     init {
         setProgressDialog()
+        setSharedPreferences()
     }
     private fun setProgressDialog() {
         val llPadding = 30
@@ -63,5 +66,9 @@ public class AppUtils(private var context: Context?) {
             dialog.window!!.attributes = layoutParams
         }
         this.dialog = dialog
+    }
+
+    fun setSharedPreferences(){
+        sf = context?.getSharedPreferences(Constants.SHARED_PREFERENCES,Context.MODE_PRIVATE)
     }
 }

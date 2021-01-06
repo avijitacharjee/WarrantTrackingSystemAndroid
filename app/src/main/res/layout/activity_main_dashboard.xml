@@ -23,11 +23,12 @@
                 android:layout_height="?attr/actionBarSize"
                 android:id="@+id/toolbar"
                 />
-            <FrameLayout
-                android:id="@+id/main_dashboard_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
         </com.google.android.material.appbar.AppBarLayout>
+        <FrameLayout
+            android:layout_marginTop="?attr/actionBarSize"
+            android:id="@+id/main_dashboard_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"

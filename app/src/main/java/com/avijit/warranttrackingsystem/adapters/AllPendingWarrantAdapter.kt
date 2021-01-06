@@ -48,6 +48,10 @@ class AllPendingWarrantAdapter(var warrantList: ArrayList<SiWarrant>) : Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.name.text = warrantList[position].criminal_name
         holder.binding.address.text = warrantList[position].criminal_address
+        holder.binding.grNumberTextView.text =": ${warrantList[position].gr_number}"
+        holder.binding.processNumberTextView.text = ": ${warrantList[position].process_number}"
+        holder.binding.fatherTextView.text = ": ${warrantList[position].criminal_father_name}"
+        holder.binding.typeTextView.text = ": ${warrantList[position].warrant_type}"
         holder.binding.moreImageView.setOnClickListener {
             var menu = PopupMenu(holder.binding.root.context, holder.binding.moreImageView)
             menu.menu.add("Execution")
@@ -74,6 +78,10 @@ class AllPendingWarrantAdapter(var warrantList: ArrayList<SiWarrant>) : Recycler
                 true
             }
         }
+        holder.binding.root.setOnClickListener{
+            holder.binding.detailsLayout.visibility =  if ( holder.binding.detailsLayout.visibility == View.VISIBLE ) View.GONE else View.VISIBLE
+        }
+
     }
 
     override fun getItemViewType(position: Int): Int {
