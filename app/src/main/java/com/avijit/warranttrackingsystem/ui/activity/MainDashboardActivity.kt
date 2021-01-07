@@ -1,23 +1,31 @@
 package com.avijit.warranttrackingsystem.ui.activity
 
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
+import androidx.core.app.ActivityCompat
 import com.avijit.warranttrackingsystem.R
 import com.avijit.warranttrackingsystem.databinding.ActivityMainDashboardBinding
 import com.avijit.warranttrackingsystem.ui.fragments.AllPendingWarrantsFragment
 import com.avijit.warranttrackingsystem.utils.Constants
 import com.avijit.warranttrackingsystem.utils.EndDrawerToggle
 
+
 class MainDashboardActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainDashboardBinding
+    private val PERMISSION_REQUEST_CODE = 200
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainDashboardBinding.inflate(layoutInflater)
@@ -38,6 +46,7 @@ class MainDashboardActivity : AppCompatActivity() {
         binding.toolbar.navigationIcon?.setTint(Color.BLACK)
         supportFragmentManager.beginTransaction().replace(R.id.main_dashboard_container, AllPendingWarrantsFragment()).commit()
         setupNavigation()
+        requestPermission()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -67,6 +76,59 @@ class MainDashboardActivity : AppCompatActivity() {
             })
             .create()
             .show()
+    }
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                ACCESS_FINE_LOCATION,
+                ACCESS_COARSE_LOCATION
+            ),
+            PERMISSION_REQUEST_CODE
+        )
+    }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            PERMISSION_REQUEST_CODE -> if (grantResults.size > 0) {
+                val fineLocationAccepted =
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED
+                val coraseLocationAccepted =
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED
+                if (fineLocationAccepted && coraseLocationAccepted ) {
+
+                } else {
+
+                    // Snackbar.make(view, "Permission Denied, You cannot access location data and camera.", Snackbar.LENGTH_LONG).show();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION)
+                            || shouldShowRequestPermissionRationale(ACCESS_COARSE_LOCATION)
+                        ) {
+                            showMessageOKCancel("You need to allow access to the permissions",
+                                DialogInterface.OnClickListener { dialog, which -> requestPermission() })
+                            return
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showMessageOKCancel(
+        message: String,
+        okListener: DialogInterface.OnClickListener
+    ) {
+        AlertDialog.Builder(this)
+            .setMessage(message)
+            .setPositiveButton("OK", okListener)
+            .setNegativeButton(
+                "Cancel"
+            ) { dialog, which -> finishAffinity() }
+            .create()
+            .show()
     }
 }

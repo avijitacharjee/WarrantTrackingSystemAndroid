@@ -1,5 +1,6 @@
 package com.avijit.warranttrackingsystem.ui.fragments
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,7 @@ import com.android.volley.toolbox.Volley
 import com.avijit.warranttrackingsystem.adapters.AllPendingWarrantAdapter
 import com.avijit.warranttrackingsystem.databinding.FragmentAllWarrantsPendingBinding
 import com.avijit.warranttrackingsystem.models.SiWarrant
+import com.avijit.warranttrackingsystem.utils.AppLocationService
 import com.avijit.warranttrackingsystem.utils.AppUtils
 import com.avijit.warranttrackingsystem.utils.Constants
 import com.google.gson.Gson
@@ -35,6 +37,10 @@ class AllPendingWarrantsFragment : Fragment() {
     private lateinit var adapter: AllPendingWarrantAdapter
     private lateinit var llm : LinearLayoutManager
     private lateinit var ctx: Context
+
+    private var latitude : Float = 0f
+    private var longitude : Float = 0f
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,10 +53,12 @@ class AllPendingWarrantsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appUtils = AppUtils(context)
+
+
         llm = LinearLayoutManager(context)
         llm.orientation = LinearLayoutManager.VERTICAL
         binding.allWarrantRecyclerView.layoutManager = llm
-        adapter = AllPendingWarrantAdapter(warrantList)
+        adapter = AllPendingWarrantAdapter(warrantList,latitude,longitude)
         binding.allWarrantRecyclerView.adapter =adapter
         loadData()
     }
@@ -58,7 +66,7 @@ class AllPendingWarrantsFragment : Fragment() {
         appUtils.dialog?.show()
         val tokenString : String
         tokenString = try {
-            val jsonObject : JSONObject =
+            val jsonObject =
                 JSONObject(activity?.getSharedPreferences(Constants.SHARED_PREFERENCES,Context.MODE_PRIVATE)?.getString("tokenBody","")+"")
             jsonObject.getString("access_token")
         }catch (e : Exception){
@@ -82,6 +90,7 @@ class AllPendingWarrantsFragment : Fragment() {
                             warrantList.add(siWarrant)
                         }
                         adapter.notifyDataSetChanged()
+                        ObjectAnimator.ofFloat(binding.allWarrantRecyclerView,View.ROTATION_X,360f,0f).setDuration(500).start()
                     }catch (e : Exception){
                         Toast.makeText(context,e.toString(),Toast.LENGTH_LONG).show()
                     }
@@ -92,7 +101,7 @@ class AllPendingWarrantsFragment : Fragment() {
                 }) {
                 @Throws(AuthFailureError::class)
                 override fun getHeaders(): Map<String, String> {
-                    var headersMap : MutableMap<String,String> = HashMap()
+                    val headersMap : MutableMap<String,String> = HashMap()
                     headersMap["Authorization"] = "Bearer $tokenString"
                     return headersMap
                 }
