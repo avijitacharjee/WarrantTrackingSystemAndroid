@@ -246,7 +246,7 @@ class AllPendingWarrantAdapter(var warrantList: ArrayList<SiWarrant>,var lattitu
                     Response.ErrorListener { error->
                         appUtils.dialog?.dismiss()
                         Toast.makeText(context, "Failed to load.", Toast.LENGTH_SHORT).show()
-                        Log.d(TAG, "postData: "+error.toString())
+                        Log.d(TAG, "postData: $error")
                     }) {
                     @Throws(AuthFailureError::class)
                     override fun getHeaders(): Map<String, String> {
