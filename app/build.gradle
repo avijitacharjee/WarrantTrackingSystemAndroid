@@ -88,4 +88,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
     implementation 'com.android.volley:volley:1.1.0'
+
+    //gms
+    implementation 'com.google.android.gms:play-services-location:15.0.0'
 }

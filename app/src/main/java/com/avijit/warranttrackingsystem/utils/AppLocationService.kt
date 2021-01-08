@@ -40,10 +40,10 @@ class AppLocationService(context: Context?) : Service(), LocationListener {
             canGetLocation = true
             if (isNetworkEnabled) {
                 if (ActivityCompat.checkSelfPermission(
-                        this,
+                        context,
                         Manifest.permission.ACCESS_FINE_LOCATION
                     ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                        this,
+                        context,
                         Manifest.permission.ACCESS_COARSE_LOCATION
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
@@ -120,7 +120,7 @@ class AppLocationService(context: Context?) : Service(), LocationListener {
             .show()
     }
 
-    fun showSettingsAlert() {
+    private fun showSettingsAlert() {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(context)
 
         // Setting Dialog Title

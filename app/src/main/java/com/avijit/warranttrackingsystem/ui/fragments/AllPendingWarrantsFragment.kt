@@ -38,8 +38,8 @@ class AllPendingWarrantsFragment : Fragment() {
     private lateinit var llm : LinearLayoutManager
     private lateinit var ctx: Context
 
-    private var latitude : Float = 0f
-    private var longitude : Float = 0f
+    private var latitude : Float = 5f
+    private var longitude : Float = 5f
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +53,8 @@ class AllPendingWarrantsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appUtils = AppUtils(context)
-
+        latitude = AppLocationService(context).getLocation()?.latitude?.toFloat() ?: 0f
+        longitude = AppLocationService(context).getLocation()?.longitude?.toFloat() ?: 0.0f
 
         llm = LinearLayoutManager(context)
         llm.orientation = LinearLayoutManager.VERTICAL
